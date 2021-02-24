@@ -1,4 +1,5 @@
 import React from "react"
+import { AnimalCard } from "./animal/AnimalCard"
 import "./Kennel.css"
 
 export const Kennel = () => {
@@ -24,6 +25,11 @@ export const Kennel = () => {
                 <div>Visit Us at the Nashville North Location</div>
                 <div>500 Puppy Way</div>
             </address>
+            <article className="animals">
+                <AnimalCard />
+                <AnimalCard />
+                <AnimalCard />
+            </article>
         </>
     )
 }
