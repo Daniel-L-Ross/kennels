@@ -4,6 +4,7 @@ import { CustomerCard } from "./customer/Customer"
 import { EmployeeCard } from "./employee/Employee"
 import { LocationCard } from "./location/Location"
 
+
 export const Kennel = () => {
     const timeElapsed = Date.now()
     const today = new Date(timeElapsed).toDateString()
