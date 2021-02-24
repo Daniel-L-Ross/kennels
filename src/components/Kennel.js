@@ -5,15 +5,15 @@ import "./Kennel.css"
 export const Kennel = () => {
     const timeElapsed = Date.now()
     const today = new Date(timeElapsed).toDateString()
-    const kennels = {
-        locations: [
-            {
-                name: "East Nashvilee",
-                adress: "500 Puppy Way"
-            },
-            {}
-        ]
-    }
+    // const kennels = {
+    //     locations: [
+    //         {
+    //             name: "East Nashvilee",
+    //             adress: "500 Puppy Way"
+    //         },
+    //         {}
+    //     ]
+    // }
 
 
     return (
