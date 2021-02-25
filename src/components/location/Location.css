@@ -1,0 +1,14 @@
+/* this is the parent container coded on Kennel.js */
+.locations {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  /* these are the animal cards imported from AnimCard.js */
+  .location {
+      flex-basis: 28%;
+      margin: 1em;
+      padding: 1em;
+      border: 1px solid goldenrod;
+  }
