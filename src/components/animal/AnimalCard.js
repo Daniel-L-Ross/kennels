@@ -1,5 +1,5 @@
 import React from "react"
-import "./Animal.css"
+// import "./Animal.css"
 
 export const AnimalCard = () => (
 <section className="animal">
