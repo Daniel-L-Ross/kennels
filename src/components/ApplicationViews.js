@@ -3,12 +3,12 @@ import React from "react"
 import { Route } from "react-router-dom"
 import { Home } from "./Home"
 import { LocationCard } from "./location/Location"
-import { CustomerCard } from "./customer/Customer"
-import { EmployeeCard } from "./employee/Employee"
 import { AnimalList } from "./animal/AnimalList"
 import { AnimalProvider } from "./animal/AnimalProvider"
 import { CustomerProvider } from "./customer/CustomerProvider"
 import { CustomerList } from "./customer/CustomerList"
+import { EmployeeProvider } from "./employee/EmployeeProvider"
+import { EmployeeList } from "./employee/EmployeeeList"
 
 // this component is responsible for rendering the dynamic content 
 // <route path is use to show what url to display when LINKing TO that page
@@ -41,9 +41,11 @@ export const ApplicationViews = () => {
                 </Route>
             </CustomerProvider>
 
-            <Route path="/employees">
-                <EmployeeCard />
-            </Route>
+            <EmployeeProvider>
+                <Route path="/employees">
+                    <EmployeeList />
+                </Route>
+            </EmployeeProvider>
         </>
     )
 }
