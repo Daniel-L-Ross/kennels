@@ -18,7 +18,7 @@ export const AnimalList = () => {
 
     return (
         <div className="animals">
-            {console.log("AnimalList: Render", animals)}
+
             {
                 animals.map(animal => {
                     // jsx to invoke/return animal card with a key of the id, and props of 

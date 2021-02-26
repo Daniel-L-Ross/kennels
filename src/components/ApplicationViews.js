@@ -7,6 +7,8 @@ import { CustomerCard } from "./customer/Customer"
 import { EmployeeCard } from "./employee/Employee"
 import { AnimalList } from "./animal/AnimalList"
 import { AnimalProvider } from "./animal/AnimalProvider"
+import { CustomerProvider } from "./customer/CustomerProvider"
+import { CustomerList } from "./customer/CustomerList"
 
 // this component is responsible for rendering the dynamic content 
 // <route path is use to show what url to display when LINKing TO that page
@@ -25,7 +27,7 @@ export const ApplicationViews = () => {
                 <LocationCard />
             </Route>
 
-                {/* wrap a componenet that needs data in the provider. this is 
+            {/* wrap a componenet that needs data in the provider. this is 
                 required in jsx */}
             <AnimalProvider>
                 <Route path="/animals">
@@ -33,9 +35,11 @@ export const ApplicationViews = () => {
                 </Route>
             </AnimalProvider>
 
-            <Route path="/customers">
-                <CustomerCard />
-            </Route>
+            <CustomerProvider>
+                <Route path="/customers">
+                    <CustomerList />
+                </Route>
+            </CustomerProvider>
 
             <Route path="/employees">
                 <EmployeeCard />
