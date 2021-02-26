@@ -1,18 +1,17 @@
 import React from "react"
 import { NavBar } from "./nav/NavBar"
 import { ApplicationViews } from "./ApplicationViews"
-// import { AnimalCard } from "./animal/AnimalCard"
-// import { CustomerCard } from "./customer/Customer"
-// import { EmployeeCard } from "./employee/Employee"
-// import { LocationCard } from "./location/Location"
-// import { PropsAndState } from "./propsAndSate/PropsAndState"
 
 
 export const Kennel = () => {
     return (
         <>
-           <NavBar/>
-           <ApplicationViews/>
+            {/* navbar renders the navbar */}
+            <NavBar />
+
+            {/* appplicationViews renders the "main" section of content that is 
+            dynamically updated via the router */}
+            <ApplicationViews />
         </>
     )
 }
