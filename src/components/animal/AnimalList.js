@@ -8,10 +8,11 @@ export const AnimalList = () => {
     const { animals, getAnimals } = useContext(AnimalContext)
 
     //useEffect - reach out to the world for something
+    // since the dependency array is empty, useEffect here is only
+    // triggered once after the component renders for the first time 
     useEffect(() => {
         console.log("AnimalList: useEffect - getAnimals")
         getAnimals()
-
     }, [])
 
 
@@ -20,6 +21,8 @@ export const AnimalList = () => {
             {console.log("AnimalList: Render", animals)}
             {
                 animals.map(animal => {
+                    // jsx to invoke/return animal card with a key of the id, and props of 
+                    // the animal object
                     return <AnimalCard key={animal.id} animal={animal} />
                 })
             }
