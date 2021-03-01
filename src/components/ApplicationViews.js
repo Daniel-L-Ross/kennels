@@ -2,11 +2,14 @@ import React from "react"
 // importing route to create the route paths
 import { Route } from "react-router-dom"
 import { Home } from "./Home"
-import { LocationCard } from "./location/Location"
-import { CustomerCard } from "./customer/Customer"
-import { EmployeeCard } from "./employee/Employee"
+import { LocationProvider } from "./location/LocationProvider"
+import { LocationList } from "./location/LocationList"
 import { AnimalList } from "./animal/AnimalList"
 import { AnimalProvider } from "./animal/AnimalProvider"
+import { CustomerProvider } from "./customer/CustomerProvider"
+import { CustomerList } from "./customer/CustomerList"
+import { EmployeeProvider } from "./employee/EmployeeProvider"
+import { EmployeeList } from "./employee/EmployeeeList"
 
 // this component is responsible for rendering the dynamic content 
 // <route path is use to show what url to display when LINKing TO that page
@@ -20,25 +23,30 @@ export const ApplicationViews = () => {
                 {/* When this route is invoked, what component should it call? */}
                 <Home />
             </Route>
-
             <Route path="/locations">
-                <LocationCard />
+                <LocationProvider>
+                    <LocationList />
+                </LocationProvider>
             </Route>
 
-                {/* wrap a componenet that needs data in the provider. this is 
+            {/* wrap a componenet that needs data in the provider. this is 
                 required in jsx */}
-            <AnimalProvider>
-                <Route path="/animals">
+            <Route path="/animals">
+                <AnimalProvider>
                     <AnimalList />
-                </Route>
-            </AnimalProvider>
+                </AnimalProvider>
+            </Route>
 
             <Route path="/customers">
-                <CustomerCard />
+                <CustomerProvider>
+                    <CustomerList />
+                </CustomerProvider>
             </Route>
 
             <Route path="/employees">
-                <EmployeeCard />
+                <EmployeeProvider>
+                    <EmployeeList />
+                </EmployeeProvider>
             </Route>
         </>
     )
