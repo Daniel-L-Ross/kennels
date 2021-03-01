@@ -23,31 +23,36 @@ export const ApplicationViews = () => {
                 {/* When this route is invoked, what component should it call? */}
                 <Home />
             </Route>
-            <Route path="/locations">
-                <LocationProvider>
+
+            <LocationProvider>
+                <Route path="/locations">
                     <LocationList />
-                </LocationProvider>
-            </Route>
+                </Route>
+            </LocationProvider>
 
             {/* wrap a componenet that needs data in the provider. this is 
                 required in jsx */}
-            <Route path="/animals">
-                <AnimalProvider>
-                    <AnimalList />
-                </AnimalProvider>
-            </Route>
+            <AnimalProvider>
+                <LocationProvider>
+                    <CustomerProvider>
+                        <Route path="/animals">
+                            <AnimalList />
+                        </Route>
+                    </CustomerProvider>
+                </LocationProvider>
+            </AnimalProvider>
 
-            <Route path="/customers">
-                <CustomerProvider>
+            <CustomerProvider>
+                <Route path="/customers">
                     <CustomerList />
-                </CustomerProvider>
-            </Route>
+                </Route>
+            </CustomerProvider>
 
-            <Route path="/employees">
-                <EmployeeProvider>
+            <EmployeeProvider>
+                <Route path="/employees">
                     <EmployeeList />
-                </EmployeeProvider>
-            </Route>
+                </Route>
+            </EmployeeProvider>
         </>
     )
 }
