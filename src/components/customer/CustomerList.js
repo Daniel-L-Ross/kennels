@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react"
 import { CustomerContext } from "./CustomerProvider"
 import { CustomerCard } from "./Customer"
+import "./Customer.css"
 
 export const CustomerList = () => {
     const {customers, getCustomers} = useContext(CustomerContext)

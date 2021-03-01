@@ -2,7 +2,8 @@ import React from "react"
 // importing route to create the route paths
 import { Route } from "react-router-dom"
 import { Home } from "./Home"
-import { LocationCard } from "./location/Location"
+import { LocationProvider } from "./location/LocationProvider"
+import { LocationList } from "./location/LocationList"
 import { AnimalList } from "./animal/AnimalList"
 import { AnimalProvider } from "./animal/AnimalProvider"
 import { CustomerProvider } from "./customer/CustomerProvider"
@@ -22,30 +23,31 @@ export const ApplicationViews = () => {
                 {/* When this route is invoked, what component should it call? */}
                 <Home />
             </Route>
-
             <Route path="/locations">
-                <LocationCard />
+                <LocationProvider>
+                    <LocationList />
+                </LocationProvider>
             </Route>
 
             {/* wrap a componenet that needs data in the provider. this is 
                 required in jsx */}
-            <AnimalProvider>
-                <Route path="/animals">
+            <Route path="/animals">
+                <AnimalProvider>
                     <AnimalList />
-                </Route>
-            </AnimalProvider>
+                </AnimalProvider>
+            </Route>
 
-            <CustomerProvider>
-                <Route path="/customers">
+            <Route path="/customers">
+                <CustomerProvider>
                     <CustomerList />
-                </Route>
-            </CustomerProvider>
+                </CustomerProvider>
+            </Route>
 
-            <EmployeeProvider>
-                <Route path="/employees">
+            <Route path="/employees">
+                <EmployeeProvider>
                     <EmployeeList />
-                </Route>
-            </EmployeeProvider>
+                </EmployeeProvider>
+            </Route>
         </>
     )
 }
