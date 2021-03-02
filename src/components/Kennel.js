@@ -1,17 +1,33 @@
-import React from "react"
-import { NavBar } from "./nav/NavBar"
-import { ApplicationViews } from "./ApplicationViews"
+import React from "react";
+import { Route, Redirect } from "react-router-dom";
+import { ApplicationViews } from "./ApplicationViews";
+import { NavBar } from "./nav/NavBar";
+import { Login } from "./auth/Login";
+import { Register } from "./auth/Register";
+import "./Kennel.css";
 
+export const Kennel = () => (
+    <>
+        <Route
+            render={() => {
+                if (localStorage.getItem("kennel_customer")) {
+                    return (
+                        <>
+                            <NavBar />
+                            <ApplicationViews />
+                        </>
+                    );
+                } else {
+                    return <Redirect to="/login" />;
+                }
+            }}
+        />
 
-export const Kennel = () => {
-    return (
-        <>
-            {/* navbar renders the navbar */}
-            <NavBar />
-
-            {/* appplicationViews renders the "main" section of content that is 
-            dynamically updated via the router */}
-            <ApplicationViews />
-        </>
-    )
-}
+        <Route path="/login">
+            <Login />
+        </Route>
+        <Route path="/register">
+            <Register />
+        </Route>
+    </>
+);
