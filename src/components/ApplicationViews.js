@@ -11,6 +11,7 @@ import { CustomerProvider } from "./customer/CustomerProvider"
 import { CustomerList } from "./customer/CustomerList"
 import { EmployeeProvider } from "./employee/EmployeeProvider"
 import { EmployeeList } from "./employee/EmployeeeList"
+// import { EmployeeForm } from "./employee/EmployeeForm"
 
 // this component is responsible for rendering the dynamic content 
 // <route path is use to show what url to display when LINKing TO that page
@@ -57,6 +58,12 @@ export const ApplicationViews = () => {
                 <Route path="/employees">
                     <EmployeeList />
                 </Route>
+
+                <LocationProvider>
+                <Route path="/employees/hire">
+                    {/* <EmployeeForm /> */}
+                </Route>
+                </LocationProvider>
             </EmployeeProvider>
         </>
     )
