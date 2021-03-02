@@ -16,7 +16,7 @@ export const EmployeeList = () => {
     return (
         <div className="employees">
             <h2>Employees</h2>
-            <button onClick={() => {history.push("./employees/hire")}}>Add New Employee</button>
+            <button onClick={() => {history.push("/employees/hire")}}>Add New Employee</button>
             {
                 employees.map(employee => {
                     return <EmployeeCard key={employee.id} employee={employee} />

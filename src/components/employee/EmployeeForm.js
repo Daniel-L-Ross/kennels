@@ -28,12 +28,19 @@ export const EmployeeForm = () => {
         }
         newEmployee[event.target.id] = selectedVal
 
-        setAnmal(newAnimal)
+        setEmployee(newEmployee)
     }
 
     const handleClickSaveEmployee = (event) => {
         event.preventDefault()
 
-        const 
+        history.push("/employees")
     }
+
+    return (
+        <button className="btn btn-primary"
+        onClick={handleClickSaveEmployee}>
+        Save Employee
+    </button>
+    )
 }
