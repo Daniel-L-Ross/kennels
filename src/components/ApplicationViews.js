@@ -4,6 +4,7 @@ import { Route } from "react-router-dom"
 import { Home } from "./Home"
 import { LocationProvider } from "./location/LocationProvider"
 import { LocationList } from "./location/LocationList"
+import { LocationForm } from "./location/LocationForm"
 import { AnimalList } from "./animal/AnimalList"
 import { AnimalProvider } from "./animal/AnimalProvider"
 import { AnimalForm } from "./animal/AnimalForm"
@@ -11,6 +12,7 @@ import { CustomerProvider } from "./customer/CustomerProvider"
 import { CustomerList } from "./customer/CustomerList"
 import { EmployeeProvider } from "./employee/EmployeeProvider"
 import { EmployeeList } from "./employee/EmployeeeList"
+import { EmployeeForm } from "./employee/EmployeeForm"
 
 // this component is responsible for rendering the dynamic content 
 // <route path is use to show what url to display when LINKing TO that page
@@ -28,6 +30,9 @@ export const ApplicationViews = () => {
             <LocationProvider>
                 <Route path="/locations">
                     <LocationList />
+                </Route>
+                <Route path="/locations/create">
+                    <LocationForm />
                 </Route>
             </LocationProvider>
 
@@ -57,6 +62,12 @@ export const ApplicationViews = () => {
                 <Route path="/employees">
                     <EmployeeList />
                 </Route>
+
+                <LocationProvider>
+                <Route path="/employees/hire">
+                    <EmployeeForm />
+                </Route>
+                </LocationProvider>
             </EmployeeProvider>
         </>
     )

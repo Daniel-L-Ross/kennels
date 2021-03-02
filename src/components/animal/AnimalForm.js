@@ -1,14 +1,20 @@
 import React, { useContext, useEffect, useState } from "react"
+import { useHistory } from 'react-router-dom';
 import { LocationContext } from "../location/LocationProvider"
 import { AnimalContext } from "../animal/AnimalProvider"
 import { CustomerContext } from "../customer/CustomerProvider"
 import "./Animal.css"
-import { useHistory } from 'react-router-dom';
 
 export const AnimalForm = () => {
     const { addAnimal } = useContext(AnimalContext)
     const { locations, getLocations } = useContext(LocationContext)
     const { customers, getCustomers } = useContext(CustomerContext)
+
+/*
+    With React, we do not target the DOM with `document.querySelector()`. Instead, our return (render) reacts to state or props.
+
+    Define the intial state of the form inputs with useState()
+    */
 
     const [animal, setAnimal] = useState({
         name: "",
@@ -19,9 +25,18 @@ export const AnimalForm = () => {
 
     const history = useHistory()
 
+       /*
+    Reach out to the world and get customers state
+    and locations state on initialization, so we can provide their data in the form dropdowns
+    */
+
     useEffect(() => {
         getCustomers().then(getLocations)
     }, [])
+
+    //when a field changes, update state. The return will re-render and display based on the values in state
+        // NOTE! What's happening in this function can be very difficult to grasp. Read it over many times and ask a lot questions about it.
+    //Controlled component
 
     const handleControlledInputChange = (event) => {
         const newAnimal = { ...animal }
@@ -40,9 +55,15 @@ export const AnimalForm = () => {
 
         const locationId = animal.locationId
         const customerId = animal.customerId
+        const name = animal.name
+        const breed = animal.breed
         if (locationId === 0 || customerId === 0) {
             window.alert("Please select a location and a customer")
+        } else if (name === "" || breed === "" ) {
+            window.alert("Please provide the pet's name and breed")
         } else {
+             //invoke addAnimal passing animal as an argument.
+        //once complete, change the url and display the animal list
             addAnimal(animal)
                 .then(() => history.push("/animals"))
         }
@@ -60,7 +81,7 @@ export const AnimalForm = () => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="breed">Animal breed:</label>
-                    <input type="text" id="breed" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Animal breed" value={animal.breed} />
+                    <input type="text" id="breed" onChange={handleControlledInputChange} className="form-control" placeholder="Animal breed" value={animal.breed} />
                 </div>
             </fieldset>
             <fieldset>
