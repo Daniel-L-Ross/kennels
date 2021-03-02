@@ -20,7 +20,7 @@ export const EmployeeForm = () => {
     }, [])
 
     const handleControlledInputChange = (event) => {
-        const newEmployee = {...employee}
+        const newEmployee = { ...employee }
         let selectedVal = event.target.value
 
         if (event.target.id.includes("Id")) {
@@ -34,13 +34,46 @@ export const EmployeeForm = () => {
     const handleClickSaveEmployee = (event) => {
         event.preventDefault()
 
-        history.push("/employees")
+        const locationId = employee.locationId
+        const name = employee.name
+
+        if (locationId === 0 || name === "") {
+            window.alert("Please select a location and fill out the Employee's name")
+        } else {
+            addEmployee(employee)
+                .then(() =>
+                    history.push("/employees"))
+        }
+
+
     }
 
     return (
-        <button className="btn btn-primary"
-        onClick={handleClickSaveEmployee}>
-        Save Employee
-    </button>
+        <form className="employeeForm">
+            <h2 className="emplyeeForm__title">New Employee</h2>
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="name">Employee Name:</label>
+                    <input type="text" id="name" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Employee Name" value={employee.name}/>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="name">Location:</label>
+                    <select defaultValue={employee.locationId} name="locationid" id="locationId" onChange={handleControlledInputChange} className="form-control">
+                        <option value="0">Select a location</option>
+                        {locations.map(l => (
+                            <option key={l.id} value ={l.id}>
+                                {l.name}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+            </fieldset>
+            <button className="btn btn-primary"
+                onClick={handleClickSaveEmployee}>
+                Save Employee
+            </button>
+        </form>
     )
 }
