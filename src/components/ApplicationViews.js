@@ -39,19 +39,23 @@ export const ApplicationViews = () => {
 
             {/* wrap a componenet that needs data in the provider. this is 
                 required in jsx */}
-            <AnimalProvider>
-                <Route exact path="/animals">
-                    <AnimalList />
-                </Route>
+            <CustomerProvider>
+                <AnimalProvider>
+                    <LocationProvider>
+                        <Route exact path="/animals">
+                            <AnimalList />
+                        </Route>
 
-                <Route path="/animals/create">
-                    <AnimalForm />
-                </Route>
+                        <Route path="/animals/create">
+                            <AnimalForm />
+                        </Route>
 
-                <Route exact path="/animals/detail/:animalId(\d+)">
-                    <AnimalDetail />
-                </Route>
-            </AnimalProvider>
+                        <Route exact path="/animals/detail/:animalId(\d+)">
+                            <AnimalDetail />
+                        </Route>
+                    </LocationProvider>
+                </AnimalProvider>
+            </CustomerProvider>
 
             <CustomerProvider>
                 <Route path="/customers">
