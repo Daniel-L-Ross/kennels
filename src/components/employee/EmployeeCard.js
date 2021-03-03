@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react"
-import { useParams, useHistory } from  "react-router-dom"
+import { useParams, useHistory, Link } from  "react-router-dom"
 import { EmployeeContext } from "./EmployeeProvider"
 import "./Employee.css"
 
-export const EmployeeDetail = ({ employee }) => {
+export const EmployeeCard = ({ employee }) => {
     const history = useHistory()
     
     const handleRemove = () => {
@@ -12,7 +12,7 @@ export const EmployeeDetail = ({ employee }) => {
 
     return (
         <section className="employee">
-            <h3 className="employee__name">{employee.name}</h3>
+            <Link to={`employees/detail/${employee.id}`}><h3>{employee.name}</h3></Link>
             <div className="employee__location">Location: {employee.location.name}</div>
             <button onClick={handleRemove}>Remove Employee</button>
         </section>
