@@ -10,8 +10,6 @@ import "./Animal.css"
 export const AnimalList = () => {
     // This state changes when `getAnimals()` is invoked below
     const { animals, getAnimals } = useContext(AnimalContext)
-    const { locations, getLocations } = useContext(LocationContext)
-    const { customers, getCustomers } = useContext(CustomerContext)
 
     const history = useHistory()
 
@@ -19,9 +17,7 @@ export const AnimalList = () => {
     // since the dependency array is empty, useEffect here is only
     // triggered once after the component renders for the first time 
     useEffect(() => {
-        getLocations()
-            .then(getCustomers)
-            .then(getAnimals)
+        getAnimals()
     }, [])
 
 
@@ -33,11 +29,7 @@ export const AnimalList = () => {
                 animals.map(animal => {
                     // jsx to invoke/return animal card with a key of the id, and props of 
                     // the animal object
-                    const owner = customers.find(c => c.id === animal.customerId)
-                    const location = locations.find(l => l.id === animal.locationId)
                     return <AnimalCard key={animal.id}
-                        location={location}
-                        customer={owner}
                         animal={animal} />
                 })
             }
