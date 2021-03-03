@@ -20,6 +20,11 @@ export const AnimalProvider = (props) => {
             .then(res => res.json())
             .then(setAnimals)
     }
+    
+    const getAnimalById = (id) => {
+        return fetch(`http://localhost:8088/animals/${id}?_expand=location&_expand=customer`)
+            .then(res => res.json())
+    }
 
     // post method to add an animal
     const addAnimal = animalObj => {
@@ -44,7 +49,7 @@ export const AnimalProvider = (props) => {
         // by child compenents. the VALUE attribute holds
         // the data we are sending here
         <AnimalContext.Provider value={{
-            animals, getAnimals, addAnimal
+            animals, getAnimals, addAnimal, getAnimalById
         }}>
             {props.children}
         </AnimalContext.Provider>
