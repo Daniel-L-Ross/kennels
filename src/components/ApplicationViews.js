@@ -8,6 +8,7 @@ import { LocationForm } from "./location/LocationForm"
 import { AnimalList } from "./animal/AnimalList"
 import { AnimalProvider } from "./animal/AnimalProvider"
 import { AnimalForm } from "./animal/AnimalForm"
+import { AnimalDetail } from "./animal/AnimalDetail"
 import { CustomerProvider } from "./customer/CustomerProvider"
 import { CustomerList } from "./customer/CustomerList"
 import { EmployeeProvider } from "./employee/EmployeeProvider"
@@ -39,17 +40,17 @@ export const ApplicationViews = () => {
             {/* wrap a componenet that needs data in the provider. this is 
                 required in jsx */}
             <AnimalProvider>
-                <LocationProvider>
-                    <CustomerProvider>
-                        <Route exact path="/animals">
-                            <AnimalList />
-                        </Route>
+                <Route exact path="/animals">
+                    <AnimalList />
+                </Route>
 
-                        <Route path="/animals/create">
-                            <AnimalForm />
-                        </Route>
-                    </CustomerProvider>
-                </LocationProvider>
+                <Route path="/animals/create">
+                    <AnimalForm />
+                </Route>
+
+                <Route exact path="/animals/detail/:animalId(\d+)">
+                    <AnimalDetail />
+                </Route>
             </AnimalProvider>
 
             <CustomerProvider>
