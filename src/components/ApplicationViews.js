@@ -12,7 +12,7 @@ import { AnimalDetail } from "./animal/AnimalDetail"
 import { CustomerProvider } from "./customer/CustomerProvider"
 import { CustomerList } from "./customer/CustomerList"
 import { EmployeeProvider } from "./employee/EmployeeProvider"
-import { EmployeeList } from "./employee/EmployeeeList"
+import { EmployeeList } from "./employee/EmployeeList"
 import { EmployeeForm } from "./employee/EmployeeForm"
 
 // this component is responsible for rendering the dynamic content 
