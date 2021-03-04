@@ -15,16 +15,27 @@ export const LocationDetail = () => {
             })
     }, [])
 
-console.log(location)
+
+const employeeCount = location.employees?.length
+const animalCount = location.animals?.length
+
 
     return (
         <section className="location">
-            {/* <h3 className="location__name">{location.name}</h3> */}
-            {/* <div className="location__address">{location.address}</div> */}
+            <h3 className="location__name">{location.name}</h3>
+            <div className="location__address">{location.address}</div>
             <h4>Employees:</h4>
-            <div></div>
+            <div>
+                {employeeCount > 0 &&
+                    location.employees.map(employee => `${employee.name}, `)
+                }
+            </div>
             <h4>Animals:</h4>
-            <div></div>
+            <div>
+                {animalCount > 0 &&
+                    location.animals.map(animal => `${animal.name}, `)
+                }
+            </div>
 
         </section>
     )
