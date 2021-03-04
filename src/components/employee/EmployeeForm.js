@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from "react"
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { LocationContext } from "../location/LocationProvider"
 import { EmployeeContext } from "./EmployeeProvider"
 import "./Employee.css"
 
 export const EmployeeForm = () => {
-    const { addEmployee } = useContext(EmployeeContext)
+    const { addEmployee, getEmployeeById, updateEmployee } = useContext(EmployeeContext)
     const { locations, getLocations } = useContext(LocationContext)
 
     const [employee, setEmployee] = useState({
@@ -14,9 +14,21 @@ export const EmployeeForm = () => {
     })
 
     const history = useHistory()
+    const { employeeId } = useParams()
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        getLocations()
+        getLocations().then(() => {
+            if (employeeId) {
+                getEmployeeById(employeeId)
+                    .then(employee => {
+                        setEmployee(employee)
+                        setIsLoading(false)
+                    })
+            } else {
+                setIsLoading(false)
+            }
+        })
     }, [])
 
     const handleControlledInputChange = (event) => {
@@ -40,9 +52,16 @@ export const EmployeeForm = () => {
         if (locationId === 0 || name === "") {
             window.alert("Please select a location and fill out the Employee's name")
         } else {
-            addEmployee(employee)
-                .then(() =>
-                    history.push("/employees"))
+            setIsLoading(true);
+
+            if (employeeId) {
+                updateEmployee(employee)
+                    .then(() => history.push(`/employees/detail/${employeeId}`))
+            } else {
+
+                addEmployee(employee)
+                    .then(() => history.push("/employees"))
+            }
         }
 
 
@@ -54,16 +73,16 @@ export const EmployeeForm = () => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="name">Employee Name:</label>
-                    <input type="text" id="name" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Employee Name" value={employee.name}/>
+                    <input type="text" id="name" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Employee Name" value={employee.name} />
                 </div>
             </fieldset>
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="name">Location:</label>
-                    <select defaultValue={employee.locationId} name="locationid" id="locationId" onChange={handleControlledInputChange} className="form-control">
+                    <select value={employee.locationId} name="locationid" id="locationId" onChange={handleControlledInputChange} className="form-control">
                         <option value="0">Select a location</option>
                         {locations.map(l => (
-                            <option key={l.id} value ={l.id}>
+                            <option key={l.id} value={l.id}>
                                 {l.name}
                             </option>
                         ))}
