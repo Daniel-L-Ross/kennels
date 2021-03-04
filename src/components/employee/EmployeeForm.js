@@ -58,7 +58,6 @@ export const EmployeeForm = () => {
                 updateEmployee(employee)
                     .then(() => history.push(`/employees/detail/${employeeId}`))
             } else {
-
                 addEmployee(employee)
                     .then(() => history.push("/employees"))
             }
@@ -69,7 +68,7 @@ export const EmployeeForm = () => {
 
     return (
         <form className="employeeForm">
-            <h2 className="emplyeeForm__title">New Employee</h2>
+            <h2 className="emplyeeForm__title">{employeeId ? "Edit Employee" : "New Employee"}</h2>
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="name">Employee Name:</label>
@@ -91,7 +90,7 @@ export const EmployeeForm = () => {
             </fieldset>
             <button className="btn btn-primary"
                 onClick={handleClickSaveEmployee}>
-                Save Employee
+                {employeeId ? "Save Employee" : "Add Employee"}
             </button>
         </form>
     )
