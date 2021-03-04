@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 import { useParams } from "react-router-dom"
 import { LocationContext } from "./LocationProvider"
 
@@ -16,8 +17,8 @@ export const LocationDetail = () => {
     }, [])
 
 
-const employeeCount = location.employees?.length
-const animalCount = location.animals?.length
+    const employeeCount = location.employees?.length
+    const animalCount = location.animals?.length
 
 
     return (
@@ -36,7 +37,9 @@ const animalCount = location.animals?.length
                     location.animals.map(animal => `${animal.name}, `)
                 }
             </div>
-
+            <Link to={`/locations/edit/${location.id}`}>
+                <button>Edit</button>
+            </Link>
         </section>
     )
 }
