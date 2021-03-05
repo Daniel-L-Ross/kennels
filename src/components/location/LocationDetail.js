@@ -34,9 +34,9 @@ export const LocationDetail = () => {
             <h4>Animals:</h4>
             <div>
                 {animalCount > 0 &&
-                    location.animals.map(animal => `${animal.name}, `)
+                    location.animals.map(animal => animal.name).join(", ")
                 }
-            </div>
+            .</div>
             <Link to={`/locations/edit/${location.id}`}>
                 <button>Edit</button>
             </Link>
