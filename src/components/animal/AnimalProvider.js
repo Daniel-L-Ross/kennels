@@ -12,6 +12,7 @@ export const AnimalContext = createContext()
 export const AnimalProvider = (props) => {
     // array destructuring to get our initial value and funcion
     const [animals, setAnimals] = useState([])
+    const [ searchTerms, setSearchTerms ] = useState("")
 
     // getAnimals is a what we have been using, except we set the animals
     // data state to the return value
@@ -67,7 +68,7 @@ export const AnimalProvider = (props) => {
         // by child compenents. the VALUE attribute holds
         // the data we are sending here
         <AnimalContext.Provider value={{
-            animals, getAnimals, addAnimal, updateAnimal, getAnimalById, releaseAnimal
+            animals, getAnimals, addAnimal, updateAnimal, getAnimalById, releaseAnimal, searchTerms, setSearchTerms
         }}>
             {props.children}
         </AnimalContext.Provider>
